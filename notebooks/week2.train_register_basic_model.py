@@ -6,14 +6,19 @@ from pyspark.sql import SparkSession
 from house_price.config import ProjectConfig, Tags
 from house_price.models.basic_model import BasicModel
 
-# COMMAND ----------
-# Default profile:
-mlflow.set_tracking_uri("databricks")
-mlflow.set_registry_uri("databricks-uc")
+from dotenv import load_dotenv
+from marvelous.common import is_databricks
 
-# # Profile called "cohort3"
-# mlflow.set_tracking_uri("databricks://cohort3")
-# mlflow.set_registry_uri("databricks-uc://cohort3")
+# COMMAND ----------
+# If you have DEFAULT profile and are logged in with DEFAULT profile,
+# skip these lines
+
+if not is_databricks():
+    load_dotenv()
+    profile = os.environ["PROFILE"]
+    mlflow.set_tracking_uri(f"databricks://{profile}")
+    mlflow.set_registry_uri(f"databricks-uc://{profile}")
+
 
 config = ProjectConfig.from_yaml(config_path="../project_config.yml", env="prd")
 spark = SparkSession.builder.getOrCreate()
