@@ -1,0 +1,9 @@
+bundle:
+  name: marvelous-databricks-course-ineszz
+
+targets:
+  dev:
+    mode: development
+    default: true
+    workspace:
+      host: https://dbc-c2e8445d-159d.cloud.databricks.com
