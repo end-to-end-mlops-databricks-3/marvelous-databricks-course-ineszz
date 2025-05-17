@@ -28,7 +28,6 @@ from sklearn.preprocessing import OneHotEncoder
 
 from house_price.config import ProjectConfig, Tags
 from house_price.utils import adjust_predictions
-from house_price import __version__
 
 
 class HousePriceModelWrapper(mlflow.pyfunc.PythonModel):
