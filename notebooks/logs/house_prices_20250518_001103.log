@@ -1,0 +1,55 @@
+2025-05-18 00:11:03.619 | INFO     | __main__:<module>:19 - Configuration loaded:
+2025-05-18 00:11:03.622 | INFO     | __main__:<module>:20 - !!python/object:house_price.config.ProjectConfig
+__dict__:
+  cat_features:
+  - MSZoning
+  - Street
+  - Alley
+  - LotShape
+  - LandContour
+  - Neighborhood
+  - Condition1
+  - BldgType
+  - HouseStyle
+  - RoofStyle
+  - Exterior1st
+  - Exterior2nd
+  - MasVnrType
+  - Foundation
+  - Heating
+  - CentralAir
+  - SaleType
+  - SaleCondition
+  catalog_name: mlops_dev
+  num_features:
+  - LotFrontage
+  - LotArea
+  - OverallQual
+  - OverallCond
+  - YearBuilt
+  - YearRemodAdd
+  - MasVnrArea
+  - TotalBsmtSF
+  - GrLivArea
+  - GarageCars
+  parameters:
+    learning_rate: 0.01
+    max_depth: 6
+    n_estimators: 1000
+  schema_name: ineszz46
+  target: SalePrice
+__pydantic_extra__: null
+__pydantic_fields_set__: !!set
+  cat_features: null
+  catalog_name: null
+  num_features: null
+  parameters: null
+  schema_name: null
+  target: null
+__pydantic_private__: null
+
+2025-05-18 00:11:03.694 | INFO     | __main__:<module>:9 - Data preprocessing: Elapsed time: 0.0172 seconds
+2025-05-18 00:11:03.718 | INFO     | __main__:<module>:3 - Training set shape: %s
+2025-05-18 00:11:03.719 | INFO     | __main__:<module>:4 - Test set shape: %s
+2025-05-18 00:11:03.733 | INFO     | __main__:<module>:2 - Saving data to catalog
+2025-05-18 00:11:24.031 | INFO     | __main__:<module>:6 - Enable change data feed

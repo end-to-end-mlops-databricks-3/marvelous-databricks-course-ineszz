@@ -1,20 +1,21 @@
-import argparse
 from datetime import datetime
 
 import yaml
 from loguru import logger
+from marvelous.logging import setup_logging
+from marvelous.timer import Timer
 from pyspark.sql import SparkSession
 
 from house_price.config import ProjectConfig
-from house_price.data_processor import DataProcessor, generate_synthetic_data
-from marvelous.logging import setup_logging
-from marvelous.timer import Timer
+from house_price.data_processor import DataProcessor
 
-config_path = f"../project_config.yml"
+config_path = "../project_config.yml"
 
 config = ProjectConfig.from_yaml(config_path=config_path, env="dev")
 
-setup_logging(log_file=f"/Volumes/{config.catalog_name}/{config.schema_name}/logs/house_prices_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log")
+setup_logging(
+    log_file=f"/Volumes/{config.catalog_name}/{config.schema_name}/logs/house_prices_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+)
 
 logger.info("Configuration loaded:")
 logger.info(yaml.dump(config, default_flow_style=False))

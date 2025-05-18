@@ -1,7 +1,5 @@
 """Data preprocessing module."""
 
-import datetime
-
 import pandas as pd
 from pyspark.sql import SparkSession
 from pyspark.sql.functions import current_timestamp, to_utc_timestamp
@@ -30,12 +28,6 @@ class DataProcessor:
         self.df["LotFrontage"] = pd.to_numeric(self.df["LotFrontage"], errors="coerce")
 
         self.df["GarageYrBlt"] = pd.to_numeric(self.df["GarageYrBlt"], errors="coerce")
-        median_year = self.df["GarageYrBlt"].median()
-        self.df["GarageYrBlt"].fillna(median_year, inplace=True)
-        current_year = datetime.datetime.now().year
-
-        self.df["GarageAge"] = current_year - self.df["GarageYrBlt"]
-        self.df.drop(columns=["GarageYrBlt"], inplace=True)
 
         # Handle numeric features
         num_features = self.config.num_features
