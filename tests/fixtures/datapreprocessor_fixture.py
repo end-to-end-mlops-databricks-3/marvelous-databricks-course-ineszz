@@ -30,7 +30,7 @@ def spark_session() -> Generator[SparkSession, None, None]:
         .config("spark.driver.bindAddress", spark_config.spark_driver_bindAddress)
         .getOrCreate()
     )
-    
+
     yield spark
     spark.stop()
 

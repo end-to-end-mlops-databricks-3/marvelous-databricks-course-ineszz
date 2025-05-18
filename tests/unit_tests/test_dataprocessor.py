@@ -88,13 +88,10 @@ def test_missing_value_handling(sample_data: pd.DataFrame, config: ProjectConfig
     assert (processor.df["MasVnrArea"] == 0).sum() > 0
 
     for col in config.cat_features:
-        assert (
-            pd.api.types.is_object_dtype(processor.df[col])
-            or pd.api.types.is_categorical_dtype(processor.df[col])
+        assert pd.api.types.is_object_dtype(processor.df[col]) or pd.api.types.is_categorical_dtype(
+            processor.df[col]
         ), f"Column {col!r} must be object or categorical dtype"
-        assert (
-            processor.df[col].isna().sum() == 0
-        ), f"Column {col!r} contains missing values"
+        assert processor.df[col].isna().sum() == 0, f"Column {col!r} contains missing values"
 
 
 def test_column_selection(sample_data: pd.DataFrame, config: ProjectConfig, spark_session: SparkSession) -> None:
