@@ -1,1 +1,1 @@
-"""marveleus."""
+"""marvelous."""
