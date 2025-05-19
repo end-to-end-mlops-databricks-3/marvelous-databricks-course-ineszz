@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="7" failures="0" skipped="2" tests="9" time="26.546" timestamp="2025-05-19T22:14:01.268672+03:00" hostname="LAPTOP-RU1LTQ2S"><testcase classname="tests.unit_tests.test_dataprocessor" name="test_data_ingestion" time="11.127"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -17,8 +17,8 @@
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -31,18 +31,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -61,30 +61,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_dataprocessor_init" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -100,8 +100,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -114,18 +114,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -144,30 +144,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_column_transformations" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -183,8 +183,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -197,18 +197,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -227,30 +227,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_missing_value_handling" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -266,8 +266,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -280,18 +280,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -310,30 +310,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_column_selection" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -349,8 +349,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -363,18 +363,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -393,30 +393,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_split_data_default_params" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -432,8 +432,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -446,18 +446,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -476,30 +476,30 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_preprocess_empty_dataframe" time="0.001"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
-    
+
         This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
         """
         # One way
@@ -515,8 +515,8 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 &gt;           .getOrCreate()
         )
 
-tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests\fixtures\datapreprocessor_fixture.py:31:
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -529,18 +529,18 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
 
 answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
         """Converts an answer received from the Java gateway into a Python object.
-    
+
         For example, string representation of integers are converted to Python
         integer, string representation of objects are converted to JavaObject
         instances, etc.
-    
+
         :param answer: the string returned by the Java gateway
         :param gateway_client: the gateway client used to communicate with the Java
             Gateway. Only necessary if the answer is a reference (e.g., object,
@@ -559,24 +559,24 @@ target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
                         "An error occurred while calling {0}{1}{2}.\n".
                         format(target_id, ".", name), value)
 E                   py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.
-E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
-E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
-E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
-E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
-E                   	at scala.Option.getOrElse(Option.scala:189)
-E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
-E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
-E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
-E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
-E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
-E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
-E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
-E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
-E                   	at py4j.Gateway.invoke(Gateway.java:238)
-E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
-E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
-E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
-E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
+E                   : java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed
+E                   	at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)
+E                   	at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)
+E                   	at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)
+E                   	at scala.Option.getOrElse(Option.scala:189)
+E                   	at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)
+E                   	at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)
+E                   	at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)
+E                   	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)
+E                   	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)
+E                   	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)
+E                   	at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)
+E                   	at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)
+E                   	at py4j.Gateway.invoke(Gateway.java:238)
+E                   	at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)
+E                   	at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)
+E                   	at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)
+E                   	at py4j.ClientServerConnection.run(ClientServerConnection.java:106)
 E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
 
 .venv\Lib\site-packages\py4j\protocol.py:326: Py4JJavaError</error></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_save_to_catalog_succesfull" time="0.001"><skipped type="pytest.skip" message="depends on delta tables on Databricks">C:\Users\Ines\VSProjects\databricks_course\marvelous-databricks-course-ineszz\tests\unit_tests\test_dataprocessor.py:156: depends on delta tables on Databricks</skipped></testcase><testcase classname="tests.unit_tests.test_dataprocessor" name="test_delta_table_property_of_enableChangeDataFeed_check" time="0.000"><skipped type="pytest.skip" message="depends on delta tables on Databricks">C:\Users\Ines\VSProjects\databricks_course\marvelous-databricks-course-ineszz\tests\unit_tests\test_dataprocessor.py:180: depends on delta tables on Databricks</skipped></testcase></testsuite></testsuites>
