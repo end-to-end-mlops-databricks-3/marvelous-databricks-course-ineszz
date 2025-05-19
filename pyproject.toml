@@ -51,7 +51,6 @@ build-backend = "setuptools.build_meta"
 where =["src"]
 include = ["house_price*"]
 
-
 [tool.setuptools.dynamic]
 version = { file = "version.txt" }
 
