@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="7" failures="0" skipped="2" tests="9" time="9.578" timestamp="2025-05-18T19:02:57.094395+03:00" hostname="LAPTOP-RU1LTQ2S"><testcase classname="tests.unit_tests.test_dataprocessor" name="test_data_ingestion" time="7.275"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="7" failures="0" skipped="2" tests="9" time="26.546" timestamp="2025-05-19T22:14:01.268672+03:00" hostname="LAPTOP-RU1LTQ2S"><testcase classname="tests.unit_tests.test_dataprocessor" name="test_data_ingestion" time="11.127"><error message="failed on setup with &quot;py4j.protocol.Py4JJavaError: An error occurred while calling None.org.apache.spark.api.java.JavaSparkContext.&#10;: java.lang.UnsupportedOperationException: getSubject is supported only if a security manager is allowed&#13;&#10;&#09;at java.base/javax.security.auth.Subject.getSubject(Subject.java:347)&#13;&#10;&#09;at org.apache.hadoop.security.UserGroupInformation.getCurrentUser(UserGroupInformation.java:577)&#13;&#10;&#09;at org.apache.spark.util.Utils$.$anonfun$getCurrentUserName$1(Utils.scala:2416)&#13;&#10;&#09;at scala.Option.getOrElse(Option.scala:189)&#13;&#10;&#09;at org.apache.spark.util.Utils$.getCurrentUserName(Utils.scala:2416)&#13;&#10;&#09;at org.apache.spark.SparkContext.&lt;init&gt;(SparkContext.scala:329)&#13;&#10;&#09;at org.apache.spark.api.java.JavaSparkContext.&lt;init&gt;(JavaSparkContext.scala:58)&#13;&#10;&#09;at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:62)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:501)&#13;&#10;&#09;at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:485)&#13;&#10;&#09;at py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:247)&#13;&#10;&#09;at py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:374)&#13;&#10;&#09;at py4j.Gateway.invoke(Gateway.java:238)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.invokeConstructor(ConstructorCommand.java:80)&#13;&#10;&#09;at py4j.commands.ConstructorCommand.execute(ConstructorCommand.java:69)&#13;&#10;&#09;at py4j.ClientServerConnection.waitForCommands(ClientServerConnection.java:182)&#13;&#10;&#09;at py4j.ClientServerConnection.run(ClientServerConnection.java:106)&#13;&#10;&#09;at java.base/java.lang.Thread.run(Thread.java:1575)&quot;">@pytest.fixture(scope="session")
     def spark_session() -&gt; Generator[SparkSession, None, None]:
         """Create and return a SparkSession for testing.
     
@@ -18,7 +18,7 @@
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -31,9 +31,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -101,7 +101,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -114,9 +114,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -184,7 +184,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -197,9 +197,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -267,7 +267,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -280,9 +280,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -350,7 +350,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -363,9 +363,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -433,7 +433,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -446,9 +446,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
@@ -516,7 +516,7 @@ E                   	at java.base/java.lang.Thread.run(Thread.java:1575)
         )
 
 tests\fixtures\datapreprocessor_fixture.py:31: 
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 .venv\Lib\site-packages\pyspark\sql\session.py:497: in getOrCreate
     sc = SparkContext.getOrCreate(sparkConf)
 .venv\Lib\site-packages\pyspark\context.py:515: in getOrCreate
@@ -529,9 +529,9 @@ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
     return self._jvm.JavaSparkContext(jconf)
 .venv\Lib\site-packages\py4j\java_gateway.py:1587: in __call__
     return_value = get_return_value(
-_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
 
-answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x000001D12C030610&gt;
+answer = 'xro22', gateway_client = &lt;py4j.clientserver.JavaClient object at 0x00000266CE413ED0&gt;
 target_id = None, name = 'org.apache.spark.api.java.JavaSparkContext'
 
     def get_return_value(answer, gateway_client, target_id=None, name=None):
