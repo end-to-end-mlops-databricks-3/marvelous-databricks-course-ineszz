@@ -38,7 +38,7 @@ class DataProcessor:
         self.df.fillna(
             {
                 "LotFrontage": self.df["LotFrontage"].mean(),
-                "MasVnrType": "None",
+                # "MasVnrType": "None",
                 "MasVnrArea": 0,
             },
             inplace=True,
@@ -47,6 +47,8 @@ class DataProcessor:
         # Convert categorical features to the appropriate type
         cat_features = self.config.cat_features
         for cat_col in cat_features:
+            # replace NaN with None
+            self.df[cat_col] = self.df[cat_col].fillna("None")
             self.df[cat_col] = self.df[cat_col].astype("category")
 
         # Extract target and relevant features
