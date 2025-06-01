@@ -8,8 +8,8 @@ dev:
   catalog_name: ineszz46
   schema_name: house_prices
 
-experiment_name_basic: /Shared/house-prices-basic
-experiment_name_custom: /Shared/house-prices-custom
+experiment_name_basic: /Shared/house-prices-ins-basic
+experiment_name_custom: /Shared/house-prices-ins-custom
 
 parameters:
   learning_rate: 0.01

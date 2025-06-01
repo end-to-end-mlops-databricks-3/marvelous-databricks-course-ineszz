@@ -11,7 +11,7 @@ from tests.unit_tests.spark_config import spark_config
 
 
 @pytest.fixture(scope="session")
-def spark_session() -> SparkSession:
+def Spark_Session() -> SparkSession:
     """Create and return a SparkSession for testing.
 
     This fixture creates a SparkSession with the specified configuration and returns it for use in tests.
@@ -51,7 +51,7 @@ def config() -> ProjectConfig:
 def sample_data(config: ProjectConfig, spark_session: SparkSession) -> pd.DataFrame:
     """Create a sample DataFrame from a CSV file.
 
-    This fixture reads a CSV file using either Spark or pandas, then converts it to a Pandas DataFrame,
+    This fixture reads a CSV file using either Spark or pandas, then converts it to a Pandas DataFrame.
 
     :return: A sampled Pandas DataFrame containing some sample of the original data.
     """
