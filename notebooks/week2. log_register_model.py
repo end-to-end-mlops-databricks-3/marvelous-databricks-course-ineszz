@@ -4,15 +4,6 @@ from pyspark.sql import SparkSession
 import mlflow
 
 from house_price.config import ProjectConfig
-from sklearn.compose import ColumnTransformer
-from sklearn.pipeline import Pipeline
-from sklearn.preprocessing import OneHotEncoder
-from lightgbm import LGBMRegressor
-from mlflow.models import infer_signature
-from marvelous.common import is_databricks
-from dotenv import load_dotenv
-import os
-from mlflow import MlflowClient
 import pandas as pd
 from house_price import __version__
 from mlflow.utils.environment import _mlflow_conda_env
@@ -26,7 +17,8 @@ if not is_databricks():
     mlflow.set_registry_uri(f"databricks-uc://{profile}")
 
 
-config = ProjectConfig.from_yaml(config_path="../project_config.yml", env="dev")
+config = ProjectConfig.from_yaml(config_path="./project_config.yml", env="dev")
+print(config.target)
 
 # COMMAND ----------
 spark = SparkSession.builder.getOrCreate()
@@ -49,7 +41,7 @@ pipeline = Pipeline(
 pipeline.fit(X_train, y_train)
 
 # COMMAND ----------
-mlflow.set_experiment("/Shared/demo-model")
+mlflow.set_experiment("/Shared/house-prices_ins")
 with mlflow.start_run(run_name="demo-run-model",
                       tags={"git_sha": "1234567890abcd",
                             "branch": "week2"},

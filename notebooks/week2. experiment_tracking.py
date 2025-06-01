@@ -18,8 +18,8 @@ if not is_databricks():
 
 mlflow.get_tracking_uri()
 # COMMAND ----------
-experiment = mlflow.set_experiment(experiment_name="/Shared/demo")
-mlflow.set_experiment_tags({"repository_name": "end-to-end-mlops-databricks-3/course-code-hub"})
+experiment = mlflow.set_experiment(experiment_name="/Shared/house-prices_ins")
+mlflow.set_experiment_tags({"repository_name": "end-to-end-mlops-databricks-3/marvelous-databricks-course-ineszz"})
 
 print(experiment)
 # COMMAND ----------
@@ -33,7 +33,7 @@ mlflow.get_experiment(experiment.experiment_id)
 # COMMAND ----------
 # search for experiment
 experiments = mlflow.search_experiments(
-    filter_string="tags.repository_name='end-to-end-mlops-databricks-3/course-code-hub'"
+    filter_string="tags.repository_name='end-to-end-mlops-databricks-3/marvelous-databricks-course-ineszz'"
 )
 print(experiments)
 
@@ -52,7 +52,7 @@ print(mlflow.active_run() is None)
 # COMMAND ----------
 # start a run
 with mlflow.start_run(
-    run_name="demo-run",
+    run_name="hpi-run",
     tags={"git_sha": "1234567890abcd",
           "branch": "week2"},
     description="demo run",
@@ -80,7 +80,7 @@ print(run_info["data"]["params"])
 # COMMAND ----------
 
 run_id = mlflow.search_runs(
-    experiment_names=["/Shared/demo"],
+    experiment_names=["/Shared/house-prices_ins"],
     filter_string="tags.git_sha='1234567890abcd'",
 ).run_id[0]
 run_info = mlflow.get_run(run_id=f"{run_id}").to_dictionary()

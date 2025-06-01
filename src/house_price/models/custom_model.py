@@ -27,7 +27,11 @@ from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OneHotEncoder
 
 from house_price.config import ProjectConfig, Tags
-from house_price.utils import adjust_predictions
+
+
+def adjust_predictions(predictions: pd.DataFrame) -> pd.DataFrame:
+    """Make predictions more human readable."""
+    return np.round(predictions * 100) / 100
 
 
 class HousePriceModelWrapper(mlflow.pyfunc.PythonModel):
