@@ -1,12 +1,12 @@
 prd:
-  catalog_name: ineszz46
-  schema_name: house_prices
+  catalog_name: mlops_prd
+  schema_name: ineszz46 
 acc:
-  catalog_name: ineszz46
-  schema_name: house_prices
+  catalog_name: mlops_acc
+  schema_name: ineszz46
 dev:
-  catalog_name: ineszz46
-  schema_name: house_prices
+  catalog_name: mlops_dev
+  schema_name: ineszz46
 
 experiment_name_basic: /Shared/house-prices-ins-basic
 experiment_name_custom: /Shared/house-prices-ins-custom
