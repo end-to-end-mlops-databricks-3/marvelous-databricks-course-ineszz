@@ -3,7 +3,11 @@ name: CI
 on:
   push:
     branches:
+<<<<<<< HEAD
     - main
+=======
+      - main
+>>>>>>> week2
   pull_request:
     branches:
       - main

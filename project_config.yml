@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 prd:
   catalog_name: mlops_prd
   schema_name: ineszz46
@@ -47,3 +48,57 @@ cat_features:
   - SaleCondition
 
 target: SalePrice
+=======
+prd:
+  catalog_name: mlops_prd
+  schema_name: ineszz46 
+acc:
+  catalog_name: mlops_acc
+  schema_name: ineszz46
+dev:
+  catalog_name: mlops_dev
+  schema_name: ineszz46
+
+experiment_name_basic: /Shared/house-prices-ins-basic
+experiment_name_custom: /Shared/house-prices-ins-custom
+
+parameters:
+  learning_rate: 0.01
+  n_estimators: 1000
+  max_depth: 6
+
+
+num_features:
+  - LotFrontage
+  - LotArea
+  - OverallQual
+  - OverallCond
+  - YearBuilt
+  - YearRemodAdd
+  - MasVnrArea
+  - TotalBsmtSF
+  - GrLivArea
+  - GarageCars
+
+cat_features:
+  - MSZoning
+  - Street
+  - Alley
+  - LotShape
+  - LandContour
+  - Neighborhood
+  - Condition1
+  - BldgType
+  - HouseStyle
+  - RoofStyle
+  - Exterior1st
+  - Exterior2nd
+  - MasVnrType
+  - Foundation
+  - Heating
+  - CentralAir
+  - SaleType
+  - SaleCondition
+
+target: SalePrice
+>>>>>>> week2

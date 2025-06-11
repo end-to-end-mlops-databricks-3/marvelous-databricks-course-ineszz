@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+# This is a Databricks asset bundle definition for course-code-hub.
+# The Databricks extension requires databricks.yml configuration file.
+# See https://docs.databricks.com/dev-tools/bundles/index.html for documentation.
+
+>>>>>>> week2
 bundle:
   name: marvelous-databricks-course-ineszz
 
@@ -7,3 +14,12 @@ targets:
     default: true
     workspace:
       host: https://dbc-c2e8445d-159d.cloud.databricks.com
+<<<<<<< HEAD
+=======
+
+  ## Optionally, there could be 'staging' or 'prod' targets here.
+  #
+  # prod:
+  #   workspace:
+  #     host: https://dbc-c2e8445d-159d.cloud.databricks.com
+>>>>>>> week2

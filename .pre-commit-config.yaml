@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 exclude: ^tests/resources/
+=======
+exclude: '^(notebooks|scripts|tests/databricks_tests)/.*'
+>>>>>>> week2
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks
     rev: v4.5.0

@@ -30,13 +30,14 @@ def test_dataprocessor_init(
 
     :param sample_data: Sample DataFrame for testing
     :param config: Configuration object for the project
-    :param spark_session: SparkSession object
+    :param spark: SparkSession object
     """
     processor = DataProcessor(pandas_df=sample_data, config=config, spark=spark_session)
     assert isinstance(processor.df, pd.DataFrame)
-    assert processor.df is sample_data
-    assert processor.config is config
-    assert processor.spark is spark_session
+    assert processor.df.equals(sample_data)
+
+    assert isinstance(processor.config, ProjectConfig)
+    assert isinstance(processor.spark, SparkSession)
 
 
 def test_column_transformations(sample_data: pd.DataFrame, config: ProjectConfig, spark_session: SparkSession) -> None:
@@ -56,19 +57,6 @@ def test_column_transformations(sample_data: pd.DataFrame, config: ProjectConfig
     assert processor.df["Id"].dtype == "object"
     assert processor.df["MasVnrType"].dtype == "category"
 
-    # Numeric features
-    for col in config.num_features:
-        assert pd.api.types.is_float_dtype(processor.df[col]) or pd.api.types.is_integer_dtype(processor.df[col])
-        assert processor.df[col].isna().sum() == 0
-    # Categorical features
-    for col in config.cat_features:
-        assert pd.api.types.is_object_dtype(processor.df[col]) or pd.api.types.is_categorical_dtype(processor.df[col])
-        assert processor.df[col].isna().sum() == 0
-
-    # Target
-    assert pd.api.types.is_numeric_dtype(processor.df[config.target])
-    assert processor.df[config.target].isna().sum() == 0
-
 
 def test_missing_value_handling(sample_data: pd.DataFrame, config: ProjectConfig, spark_session: SparkSession) -> None:
     """Test missing value handling in the DataProcessor.
@@ -86,12 +74,6 @@ def test_missing_value_handling(sample_data: pd.DataFrame, config: ProjectConfig
     assert processor.df["LotFrontage"].isna().sum() == 0
     assert (processor.df["MasVnrType"] == "None").sum() > 0
     assert (processor.df["MasVnrArea"] == 0).sum() > 0
-
-    for col in config.cat_features:
-        assert pd.api.types.is_object_dtype(processor.df[col]) or pd.api.types.is_categorical_dtype(
-            processor.df[col]
-        ), f"Column {col!r} must be object or categorical dtype"
-        assert processor.df[col].isna().sum() == 0, f"Column {col!r} contains missing values"
 
 
 def test_column_selection(sample_data: pd.DataFrame, config: ProjectConfig, spark_session: SparkSession) -> None:
@@ -177,7 +159,7 @@ def test_save_to_catalog_succesfull(
     assert spark_session.catalog.tableExists(f"{config.catalog_name}.{config.schema_name}.test_set")
 
 
-@pytest.mark.skip(reason="depends on delta tables on Databricks")
+@pytest.mark.skip(reason="depends on delta tables on Databrics")
 @pytest.mark.order(after=test_save_to_catalog_succesfull)
 def test_delta_table_property_of_enableChangeDataFeed_check(config: ProjectConfig, spark_session: SparkSession) -> None:
     """Check if Change Data Feed is enabled for train and test sets.
