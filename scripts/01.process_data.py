@@ -1,19 +1,21 @@
-import argparse
+from datetime import datetime
 
 import yaml
 from loguru import logger
+from marvelous.logging import setup_logging
+from marvelous.timer import Timer
 from pyspark.sql import SparkSession
 
 from house_price.config import ProjectConfig
-from house_price.data_processor import DataProcessor, generate_synthetic_data
-from marvelous.logging import setup_logging
-from marvelous.timer import Timer
+from house_price.data_processor import DataProcessor
 
-config_path = f"../project_config.yml"
+config_path = "../project_config.yml"
 
 config = ProjectConfig.from_yaml(config_path=config_path, env="dev")
 
-setup_logging(log_file=f"/Volumes/{config.catalog_name}/{config.schema_name}/logs/marvelous-1.log")
+setup_logging(
+    log_file=f"/Volumes/{config.catalog_name}/{config.schema_name}/logs/house_prices_{datetime.now().strftime('%Y%m%d_%H%M%S')}.log"
+)
 
 logger.info("Configuration loaded:")
 logger.info(yaml.dump(config, default_flow_style=False))
@@ -39,5 +41,5 @@ logger.info("Training set shape: %s", X_train.shape)
 logger.info("Test set shape: %s", X_test.shape)
 
 # Save to catalog
-logger.info("Saving data to catalog")
+logger.info(f"Saving data to catalog {config.catalog_name}")
 data_processor.save_to_catalog(X_train, X_test)

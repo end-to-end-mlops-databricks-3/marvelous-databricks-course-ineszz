@@ -1,4 +1,5 @@
 .vscode/*
+.history
 .databricks
 uv.lock
 .devcontainer
@@ -6,6 +7,10 @@ uv.lock
 src/*.egg-info
 src/house_price/__pycache__/
 src/house_price/models/__pycache__/
+
+# 
+# notebooks/
+data/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
@@ -23,6 +28,7 @@ venv/
 
 # Logs and debug
 logs/
+notebooks/logs/*
 *.log
 debug.log
 
