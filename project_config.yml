@@ -8,6 +8,7 @@ dev:
   catalog_name: mlops_dev
   schema_name: ineszz46
 
+model_name_basic: house_prices_model_basic
 experiment_name_basic: /Shared/house-prices-ins-basic
 experiment_name_custom: /Shared/house-prices-ins-custom
 
@@ -15,6 +16,7 @@ parameters:
   learning_rate: 0.01
   n_estimators: 1000
   max_depth: 6
+  force_row_wise: True
 
 
 num_features:

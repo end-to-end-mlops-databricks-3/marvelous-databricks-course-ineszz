@@ -19,6 +19,9 @@ class ProjectConfig(BaseModel):
     catalog_name: str
     schema_name: str
     parameters: dict[str, Any]
+    model_name_basic: str
+    experiment_name_basic: str | None
+    experiment_name_custom: str | None
 
     @classmethod
     def from_yaml(cls, config_path: str, env: str = "dev") -> "ProjectConfig":

@@ -58,3 +58,5 @@ pip-wheel-metadata/
 .databricks
 test-reports
 .coverage
+/typings
+*.pyi
