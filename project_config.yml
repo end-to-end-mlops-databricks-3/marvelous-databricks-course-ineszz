@@ -9,6 +9,7 @@ dev:
   schema_name: ineszz46
 
 model_name_basic: house_prices_model_basic
+model_name_custom: house_prices_model_custom
 experiment_name_basic: /Shared/house-prices-ins-basic
 experiment_name_custom: /Shared/house-prices-ins-custom
 

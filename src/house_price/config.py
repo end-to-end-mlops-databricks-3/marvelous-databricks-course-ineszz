@@ -1,6 +1,6 @@
 """Configuration file for the project."""
 
-from typing import Any
+from typing import Any, Optional
 
 import yaml
 from pydantic import BaseModel
@@ -20,6 +20,7 @@ class ProjectConfig(BaseModel):
     schema_name: str
     parameters: dict[str, Any]
     model_name_basic: str
+    model_name_custom: str
     experiment_name_basic: str | None
     experiment_name_custom: str | None
 
@@ -50,4 +51,4 @@ class Tags(BaseModel):
 
     git_sha: str
     branch: str
-    job_run_id: str
+    job_run_id: Optional[str] = None

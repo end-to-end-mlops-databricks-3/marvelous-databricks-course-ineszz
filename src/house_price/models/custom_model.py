@@ -20,6 +20,7 @@ from mlflow import MlflowClient
 from mlflow.data.dataset_source import DatasetSource
 from mlflow.models import infer_signature
 from mlflow.utils.environment import _mlflow_conda_env
+from mlflow.pyfunc import PythonModelContext
 from pyspark.sql import SparkSession
 from sklearn.compose import ColumnTransformer
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score
@@ -48,7 +49,7 @@ class HousePriceModelWrapper(mlflow.pyfunc.PythonModel):
         self.model = model
 
     def predict(
-        self, context: mlflow.pyfunc.PythonModelContext, model_input: pd.DataFrame | np.ndarray
+        self, context: PythonModelContext , model_input: pd.DataFrame | np.ndarray
     ) -> dict[str, float]:
         """Make predictions using the wrapped model.
 
@@ -91,6 +92,8 @@ class CustomModel:
         self.catalog_name = self.config.catalog_name
         self.schema_name = self.config.schema_name
         self.experiment_name = self.config.experiment_name_custom
+        # self.model_subname = self.config.model_name_custom
+        self.model_name = f"{self.catalog_name}.{self.schema_name}.house_prices_model_custom"
         self.tags = tags.dict()
         self.code_paths = code_paths
 
@@ -253,7 +256,7 @@ class CustomModel:
         """
         logger.info("🔄 Loading model from MLflow alias 'production'...")
 
-        model_uri = f"models:/{self.catalog_name}.{self.schema_name}.house_prices_model_custom@latest-model"
+        model_uri = f"models:/{self.catalog_name}.{self.schema_name}.house_prices_model_custom@latest-model" # to recheck
         model = mlflow.pyfunc.load_model(model_uri)
 
         logger.info("✅ Model successfully loaded.")
